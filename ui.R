@@ -10,21 +10,28 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Miles/(US) gallon by Transmission type"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      selectInput("variable", "Variable:",
+                  list("Number of cylinders" = "cyl", 
+                       "Number of forward gears" = "gear",
+                       "Weight (lb/1000)" = "wt",
+                       "Gross horsepower" = "hp",
+                       "Displacement (cu.in.)" = "disp",
+                       "1/4 mile time" = "qsec",
+                       "Number of carburetors" = "carb",
+                       "Rear axle ratio" = "drat",
+                       "V/S" = "vs")),
+      tableOutput("coefficients")
     ),
 
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput("pairPlot", height = 300),
+      plotOutput("boxPlot", height = 300)
     )
   )
 ))
