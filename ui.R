@@ -13,6 +13,7 @@ shinyUI(fluidPage(
   titlePanel("Miles/(US) gallon by Transmission type"),
 
   # Sidebar with a slider input for number of bins
+  
   sidebarLayout(
     sidebarPanel(
       selectInput("variable", "Variable:",
@@ -30,8 +31,11 @@ shinyUI(fluidPage(
 
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("pairPlot", height = 300),
-      plotOutput("boxPlot", height = 300)
+      tabsetPanel(
+        tabPanel("Mpg ~ variable", plotOutput("pairPlot", height = 300)), 
+        tabPanel("Boxplot", plotOutput("boxPlot", height = 300))
+        
+      )
     )
   )
 ))

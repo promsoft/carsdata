@@ -48,4 +48,5 @@ shinyServer(function(input, output) {
     fit <- lm(mpg~am, mtcars)
     data.frame(summary(fit)$coeff)
   })
+  output$predictor <- renderText('xxx')
 })
