@@ -25,7 +25,8 @@ shinyUI(fluidPage(
                  textOutput("formula0"),
                  tableOutput("coeff0")
         ),
-        tabPanel("QQ plot", plotOutput("qqPlot", height = 500))
+        tabPanel("QQ plot", plotOutput("qqPlot", height = 500)),
+        tabPanel("res plot", plotOutput("resPlot", height = 500))
       )
     )
   )

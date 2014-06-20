@@ -85,5 +85,18 @@ shinyServer(function(input, output) {
     qqline(res, main='')
     par(mar=parmar)
   })
+
+  output$resPlot <- renderPlot({
+    parmar <- par('mar')
+    par(mar = c(4, 4, 4, 2))
+    cofounder <- input$variable
+    frm <- paste0("mpg~am+", cofounder, "+am:", cofounder)
+    fit <- lm(formula(frm), mtcars)
+    res <- residuals(fit)
+    fits <- fitted(fit)
+    plot(res ~ fits, main='Residuals plot')
+    abline(h = 0)
+    par(mar=parmar)
+  })
   
 })
