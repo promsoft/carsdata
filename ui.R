@@ -2,11 +2,11 @@ library(shiny)
 
 shinyUI(fluidPage(
 
-  titlePanel("Miles/(US) gallon by Transmission type"),
+  titlePanel("Car per gallon milleage by trasmission type"),
 
   sidebarLayout(
     sidebarPanel(
-      selectInput("variable", "Variable:",
+      selectInput("variable", "Cofounder variable:",
                   list("Number of cylinders" = "cyl", 
                        "Number of forward gears" = "gear",
                        "Weight (lb/1000)" = "wt",
@@ -20,7 +20,7 @@ shinyUI(fluidPage(
     mainPanel(
       tabsetPanel(
         tabPanel("Scatterplot", plotOutput("pairPlot", height = 500)), 
-        tabPanel("Boxplot", plotOutput("boxPlot", height = 500)),
+        tabPanel("Cofounder boxplot", plotOutput("boxPlot", height = 500)),
         tabPanel("Regression coefficients",
                  textOutput("formula0"),
                  tableOutput("coeff0")
