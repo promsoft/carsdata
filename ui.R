@@ -18,17 +18,23 @@ shinyUI(fluidPage(
                        "Number of carburetors" = "carb",
                        "Rear axle ratio" = "drat",
                        "V/S" = "vs")),
+      h5("Scatterplot"),
       p("На вкладке Scatterplot отображаются"),
+      h5("Scatterplot"),
       p("Boxplot"),
-      p("Regression coefficients"),
-      p("QQ plot"),
-      p("Residuals")
+      h5("Regression coefficients"),
+      p("R Squared and regression coeffitient for regression model"),
+      h5("QQ plot"),
+      p("Theoretical Quantile-Quantile Plot"),
+      h5("Residuals"),
+      p("Residuals plot (residuals vs fited values)")
     ),
     mainPanel(
       tabsetPanel(
         tabPanel("Scatterplot", plotOutput("pairPlot", height = 500)), 
         tabPanel("Boxplot", plotOutput("boxPlot", height = 500)),
         tabPanel("Regression coefficients",
+                 textOutput("formula"),
                  textOutput("formula0"),
                  tableOutput("coeff0")
         ),

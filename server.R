@@ -73,6 +73,12 @@ shinyServer(function(input, output) {
     fit <- lm(formula(frm), mtcars)
     paste0("R.squared=", summary(fit)$r.squared)
   })
+
+  output$formula <- renderText({
+    cofounder <- input$variable
+    frm <- paste0("mpg~am+", cofounder, "+am:", cofounder)
+    paste0("Model: ", frm)
+  })
   
   output$qqPlot <- renderPlot({
     parmar <- par('mar')
