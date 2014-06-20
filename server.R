@@ -15,12 +15,16 @@ mark.twain <- function(x) {
        , xlab=x
        , ylab='mpg')
   
-  fit0 <- lm(set0$mpg~set0[[x]])
+  formula0 <- paste0('mpg~', x)
+  fit0 <- lm(formula(formula0), set0)
   abline(fit0, col=color0, lw=2)
+  
   fit1 <- lm(set1$mpg~set1[[x]])
   abline(fit1, col=color1, lw=2)
+  
   fit2 <- lm(mtcars$mpg~mtcars[[x]])
   abline(fit2, col=color2, lty=3, lw=2)
+  
   legend("topright", pch = 1
          , col = c(color0, color1)
          , legend = c("manual", "automatic"))
@@ -51,14 +55,16 @@ shinyServer(function(input, output) {
   })
   
   output$coeff0 <- renderTable({
-    fit2 <- lm(formula(paste0("mpg~am+", input$variable)), set0)
+    cofounder <- input$variable
+    fit2 <- lm(formula(paste0("mpg~am+", cofounder, "+am:", cofounder)), mtcars)
     data.frame(summary(fit2)$coeff)
   })
 
   output$formula0 <- renderText({
-    frm <- paste0("mpg~am+", input$variable)
+    cofounder <- input$variable
+    frm <- paste0("mpg~am+", cofounder, "+am:", cofounder)
     fit <- lm(formula(frm), mtcars)
-    paste0("lm(", frm,"),  R.squared=", summary(fit)$r.squared)
+    paste0("R.squared=", summary(fit)$r.squared)
   })
   
   
