@@ -16,10 +16,10 @@ shinyUI(fluidPage(
                        "Number of carburetors" = "carb",
                        "Rear axle ratio" = "drat",
                        "V/S" = "vs"))
-    )
+    ),
     mainPanel(
       tabsetPanel(
-        tabPanel("Mpg ~ variable", plotOutput("pairPlot", height = 500)), 
+        tabPanel("Scatterplot", plotOutput("pairPlot", height = 500)), 
         tabPanel("Boxplot", plotOutput("boxPlot", height = 500)),
         tabPanel("Regression coefficients", tableOutput("coeff0"), tableOutput("coeff1"), tableOutput("coeff2"))
       )

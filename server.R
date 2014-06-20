@@ -44,21 +44,30 @@ shinyServer(function(input, output) {
     variable <- input$variable
     mark.twain(variable)
   })
+  
   output$boxPlot <- renderPlot({
     variable <- input$variable
     do.box(variable)
   })
+  
   output$coeff0 <- renderTable({
     fit2 <- lm(formula(paste0("mpg~am+", input$variable)), set0)
     data.frame(summary(fit2)$coeff)
   })
+  
   output$coeff1 <- renderTable({
     fit2 <- lm(formula(paste0("mpg~am+", input$variable)), set1)
     data.frame(summary(fit2)$coeff)
   })
+  
   output$coeff2 <- renderTable({
     fit2 <- lm(formula(paste0("mpg~am+", input$variable)), mtcars)
     data.frame(summary(fit2)$coeff)
   })
+
+  output$formula0 <- renderText({
+    paste0("mpg~am+", input$variable)
+  })
+  
   
 })
