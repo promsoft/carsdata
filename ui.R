@@ -21,7 +21,11 @@ shinyUI(fluidPage(
       tabsetPanel(
         tabPanel("Scatterplot", plotOutput("pairPlot", height = 500)), 
         tabPanel("Boxplot", plotOutput("boxPlot", height = 500)),
-        tabPanel("Regression coefficients", tableOutput("coeff0"), tableOutput("coeff1"), tableOutput("coeff2"))
+        tabPanel("Regression coefficients",
+                 textOutput("formula0"),
+                 tableOutput("coeff0"), 
+                 tableOutput("coeff1"), 
+                 tableOutput("coeff2"))
       )
     )
   )

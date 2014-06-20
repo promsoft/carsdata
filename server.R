@@ -66,7 +66,8 @@ shinyServer(function(input, output) {
   })
 
   output$formula0 <- renderText({
-    paste0("mpg~am+", input$variable)
+    frm <- paste0("mpg~am+", input$variable)
+    paste0("lm(", frm,")")
   })
   
   
