@@ -54,16 +54,6 @@ shinyServer(function(input, output) {
     fit2 <- lm(formula(paste0("mpg~am+", input$variable)), set0)
     data.frame(summary(fit2)$coeff)
   })
-  
-  output$coeff1 <- renderTable({
-    fit2 <- lm(formula(paste0("mpg~am+", input$variable)), set1)
-    data.frame(summary(fit2)$coeff)
-  })
-  
-  output$coeff2 <- renderTable({
-    fit2 <- lm(formula(paste0("mpg~am+", input$variable)), mtcars)
-    data.frame(summary(fit2)$coeff)
-  })
 
   output$formula0 <- renderText({
     frm <- paste0("mpg~am+", input$variable)
