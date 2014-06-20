@@ -19,7 +19,7 @@ shinyUI(fluidPage(
                        "Rear axle ratio" = "drat",
                        "V/S" = "vs")),
       h5("Scatterplot"),
-      p("На вкладке Scatterplot отображаются"),
+      p("Cofounder vs Mileage"),
       h5("Boxplot"),
       p("Boxplot for cofounder variable, splitted by transmission type"),
       h5("Regression coefficients"),
