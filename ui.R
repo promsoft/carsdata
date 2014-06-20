@@ -2,11 +2,13 @@ library(shiny)
 
 shinyUI(fluidPage(
 
-  titlePanel("Car per gallon milleage by trasmission type"),
+  titlePanel("Car per gallon mileage by trasmission type"),
 
   sidebarLayout(
     sidebarPanel(
-      selectInput("variable", "Cofounder variable:",
+      p("With this application you can exlore relationship between 
+         car mileage and transmission type, using various cofounder variables"),
+      selectInput("variable", "Select cofounder variable:",
                   list("Number of cylinders" = "cyl", 
                        "Number of forward gears" = "gear",
                        "Weight (lb/1000)" = "wt",
@@ -15,7 +17,12 @@ shinyUI(fluidPage(
                        "1/4 mile time" = "qsec",
                        "Number of carburetors" = "carb",
                        "Rear axle ratio" = "drat",
-                       "V/S" = "vs"))
+                       "V/S" = "vs")),
+      p("На вкладке Scatterplot отображаются"),
+      p("Boxplot"),
+      p("Regression coefficients"),
+      p("QQ plot"),
+      p("Residuals")
     ),
     mainPanel(
       tabsetPanel(
