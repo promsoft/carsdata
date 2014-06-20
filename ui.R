@@ -1,19 +1,9 @@
-
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
-
 library(shiny)
 
 shinyUI(fluidPage(
 
-  # Application title
   titlePanel("Miles/(US) gallon by Transmission type"),
 
-  # Sidebar with a slider input for number of bins
-  
   sidebarLayout(
     sidebarPanel(
       selectInput("variable", "Variable:",
@@ -25,16 +15,13 @@ shinyUI(fluidPage(
                        "1/4 mile time" = "qsec",
                        "Number of carburetors" = "carb",
                        "Rear axle ratio" = "drat",
-                       "V/S" = "vs")),
-      tableOutput("coefficients")
-    ),
-
-    # Show a plot of the generated distribution
+                       "V/S" = "vs"))
+    )
     mainPanel(
       tabsetPanel(
-        tabPanel("Mpg ~ variable", plotOutput("pairPlot", height = 300)), 
-        tabPanel("Boxplot", plotOutput("boxPlot", height = 300))
-        
+        tabPanel("Mpg ~ variable", plotOutput("pairPlot", height = 500)), 
+        tabPanel("Boxplot", plotOutput("boxPlot", height = 500)),
+        tabPanel("Regression coefficients", tableOutput("coeff0"), tableOutput("coeff1"), tableOutput("coeff2"))
       )
     )
   )
