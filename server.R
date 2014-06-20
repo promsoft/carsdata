@@ -15,16 +15,21 @@ mark.twain <- function(x) {
        , col=ifelse(mtcars$am==0, color0, color1)
        , xlab=x
        , ylab='mpg')
-  
-  formula0 <- paste0('mpg~', x)
-  fit0 <- lm(formula(formula0), set0)
-  abline(fit0, col=color0, lw=2)
-  
-  fit1 <- lm(formula(formula0), set1)
-  abline(fit1, col=color1, lw=2)
-  
-  fit2 <- lm(formula(formula0), mtcars)
-  abline(fit2, col=color2, lty=3, lw=2)
+  if(x == 0) {
+    fit2 <- lm(mpg~am, mtcars)
+    abline(fit2, col=color2, lty=3, lw=2)    
+    
+  } else {
+    formula0 <- paste0('mpg~', x)
+    fit0 <- lm(formula(formula0), set0)
+    abline(fit0, col=color0, lw=2)
+    
+    fit1 <- lm(formula(formula0), set1)
+    abline(fit1, col=color1, lw=2)
+    
+    fit2 <- lm(formula(formula0), mtcars)
+    abline(fit2, col=color2, lty=3, lw=2)    
+  }
   
   legend("topright", pch = c(1, 1, 45, 45, 45)
          , col = c(color0, color1, color0, color1, color2)
@@ -69,5 +74,16 @@ shinyServer(function(input, output) {
     paste0("R.squared=", summary(fit)$r.squared)
   })
   
+  output$qqPlot <- renderPlot({
+    parmar <- par('mar')
+    par(mar = c(4, 4, 0, 2))
+    cofounder <- input$variable
+    frm <- paste0("mpg~am+", cofounder, "+am:", cofounder)
+    fit <- lm(formula(frm), mtcars)
+    res <- residuals(fit)
+    qqnorm(res, main='')
+    qqline(res, main='')
+    par(mar=parmar)
+  })
   
 })
