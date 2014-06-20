@@ -6,7 +6,7 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      p("With this application you can exlore relationship between 
+      p("You can exlore relationship between 
          car mileage and transmission type, using various cofounder variables"),
       selectInput("variable", "Select cofounder variable:",
                   list("Number of cylinders" = "cyl", 
@@ -20,10 +20,10 @@ shinyUI(fluidPage(
                        "V/S" = "vs")),
       h5("Scatterplot"),
       p("На вкладке Scatterplot отображаются"),
-      h5("Scatterplot"),
-      p("Boxplot"),
+      h5("Boxplot"),
+      p("Boxplot for cofounder variable, splitted by transmission type"),
       h5("Regression coefficients"),
-      p("R Squared and regression coeffitient for regression model"),
+      p("R Squared and regression coefficients for regression model"),
       h5("QQ plot"),
       p("Theoretical Quantile-Quantile Plot"),
       h5("Residuals"),
