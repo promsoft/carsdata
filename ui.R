@@ -19,7 +19,7 @@ shinyUI(fluidPage(
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel("Scatterplot", plotOutput("pairPlot", height = 500)), 
+        tabPanel("Scatterplot and marginal regression", plotOutput("pairPlot", height = 500)), 
         tabPanel("Cofounder boxplot", plotOutput("boxPlot", height = 500)),
         tabPanel("Regression coefficients",
                  textOutput("formula0"),

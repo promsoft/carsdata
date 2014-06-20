@@ -3,6 +3,7 @@ data(mtcars)
 color0 <- 'turquoise4'
 color1 <- 'darkorange'
 color2 <- 'gray'
+
 set0 <- mtcars[mtcars$am==0,]
 set1 <- mtcars[mtcars$am==1,]
 
@@ -19,15 +20,16 @@ mark.twain <- function(x) {
   fit0 <- lm(formula(formula0), set0)
   abline(fit0, col=color0, lw=2)
   
-  fit1 <- lm(set1$mpg~set1[[x]])
+  fit1 <- lm(formula(formula0), set1)
   abline(fit1, col=color1, lw=2)
   
-  fit2 <- lm(mtcars$mpg~mtcars[[x]])
+  fit2 <- lm(formula(formula0), mtcars)
   abline(fit2, col=color2, lty=3, lw=2)
   
-  legend("topright", pch = 1
-         , col = c(color0, color1)
-         , legend = c("manual", "automatic"))
+  legend("topright", pch = c(1, 1, 45, 45, 45)
+         , col = c(color0, color1, color0, color1, color2)
+         , legend = c("manual", "automatic", "marg. manual", "marg. auto", paste0("mpg~", x))
+         )
   f.diff <- summary(fit1)$coeff - summary(fit0)$coeff 
   par(mar=parmar)
 }
