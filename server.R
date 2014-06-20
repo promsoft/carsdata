@@ -57,7 +57,8 @@ shinyServer(function(input, output) {
 
   output$formula0 <- renderText({
     frm <- paste0("mpg~am+", input$variable)
-    paste0("lm(", frm,")")
+    fit <- lm(formula(frm), mtcars)
+    paste0("lm(", frm,"),  R.squared=", summary(fit)$r.squared)
   })
   
   
