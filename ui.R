@@ -6,7 +6,8 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      p("You can exlore relationship between 
+      p("The data was extracted from the 1974 Motor Trend US magazine.
+         You can exlore relationship between 
          car mileage and transmission type, using various cofounder variables"),
       selectInput("variable", "Select cofounder variable:",
                   list("Number of cylinders" = "cyl", 
